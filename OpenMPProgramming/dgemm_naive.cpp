@@ -1,4 +1,5 @@
 #include <omp.h>
+#include <cstddef>
 
 // Naive DGEMM: C(m x n) = A(m x k) * B(k x n)
 // Row-major, flattened arrays
@@ -13,10 +14,9 @@ void dgemm_naive(const double* A, const double* B, double* C,
         }
     }
 
-    // TODO: Add OpenMP parallelization
-   // Write your code here
-
-    #pragma omp parallel for collapse(2) schedule(static)
+    // Parallelize outer i-loop. Do not collapse with k-loop
+    // because that would create data races on C's rows.
+    #pragma omp parallel for schedule(static)
     for (int i = 0; i < m; ++i) {
         double* Ci = C + (std::size_t)i * n;
         const double* Ai = A + (std::size_t)i * k;

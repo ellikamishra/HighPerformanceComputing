@@ -13,7 +13,7 @@ ifeq ($(USE_MKL),1)
   endif
 endif
 
-SRCS := main.cpp dgemm_naive.cpp attention_via_dgemm.cpp attention_direct.cpp
+SRCS := main.cpp dgemm_naive.cpp 
 OBJS := $(SRCS:.cpp=.o)
 BIN := hw_driver
 
