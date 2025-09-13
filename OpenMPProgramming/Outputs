@@ -1,0 +1,7 @@
+ellikam@nid006828:~/csce654-hw1/HighPerformanceComputing/OpenMPProgramming> ./hw_driver --mode dgemm --m 2048 --n 2048 --k 2048 --scale
+Time: 0.068275 s,   Rate: 251.63 GFLOP/s
+[verify] MKL not available. Skipping.
+
+Naive implementation
+
+

@@ -10,10 +10,15 @@ void dgemm_naive(const double* A, const double* B, double* C,
 // Helper: transpose K(LxD) to KT(DxL)
 static void transpose(const double* K, double* KT, int L, int D) 
 {
+    #pragma omp parallel for collapse(2) schedule(static)
+    for (int d = 0; d < D; ++d)
+        for (int l = 0; l < L; ++l)
+            KT[(std::size_t)d * L + l] = K[(std::size_t)l * D + d];
 }
 
 // Helper: row-wise softmax
 static void softmax_rows(double* S, int L) {
+    #pragma omp parallel for schedule(static)
     for (int i = 0; i < L; i++) {
         double* row = S + i * L;
         double m = row[0];
@@ -32,4 +37,24 @@ void attention_via_dgemm(const double* Q, const double* K, const double* V,
                          bool use_blocked, int BM, int BN, int BK) {
     
     // implement your code
+    std::vector<double> KT((std::size_t)D * L);
+    transpose_LxD_to_DxL(K, KT.data(), L, D);
+    std::vector<double> S((std::size_t)L * L, 0.0);
+    if (use_blocked) {
+        dgemm_blocked(Q, KT.data(), S.data(), L, L, D, BM, BN, BK);
+    } else {
+        dgemm_naive(Q, KT.data(), S.data(), L, L, D);
+    }
+    const double scl = 1.0 / std::sqrt((double)D);
+    #pragma omp parallel for schedule(static)
+    for (int i = 0; i < L; ++i) {
+        double* Si = S.data() + (std::size_t)i * L;
+        for (int j = 0; j < L; ++j) Si[j] *= scl;
+    }
+    softmax_rows(S.data(), L);
+    if (use_blocked) {
+        dgemm_blocked(S.data(), V, O, L, D, L, BM, BN, BK);
+    } else {
+        dgemm_naive(S.data(), V, O, L, D, L);
+    }
 }
