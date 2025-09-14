@@ -1,0 +1,24 @@
+=== DGEMM | OMP_THREADS=1 ===
+=== DGEMM (naive) | OMP_THREADS=1 ===
+Time: 2.048439 s  Rate: 8.39 GFLOP/s
+[verify] MKL not available. Skipping.
+=== DGEMM | OMP_THREADS=2 ===
+=== DGEMM (naive) | OMP_THREADS=2 ===
+Time: 1.478419 s  Rate: 11.62 GFLOP/s
+[verify] MKL not available. Skipping.
+=== DGEMM | OMP_THREADS=4 ===
+=== DGEMM (naive) | OMP_THREADS=4 ===
+Time: 0.727730 s  Rate: 23.61 GFLOP/s
+[verify] MKL not available. Skipping.
+=== DGEMM | OMP_THREADS=8 ===
+=== DGEMM (naive) | OMP_THREADS=8 ===
+Time: 0.402593 s  Rate: 42.67 GFLOP/s
+[verify] MKL not available. Skipping.
+=== DGEMM | OMP_THREADS=16 ===
+=== DGEMM (naive) | OMP_THREADS=16 ===
+Time: 0.218510 s  Rate: 78.62 GFLOP/s
+[verify] MKL not available. Skipping.
+=== DGEMM | OMP_THREADS=32 ===
+=== DGEMM (naive) | OMP_THREADS=32 ===
+Time: 0.215045 s  Rate: 79.89 GFLOP/s
+[verify] MKL not available. Skipping.

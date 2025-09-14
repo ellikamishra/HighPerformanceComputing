@@ -1,0 +1,7 @@
+mode,threads,gflops,label
+Attention (direct),1,9.21,static
+Attention (direct),2,12.18,static
+Attention (direct),4,25.15,static
+Attention (direct),8,47.59,static
+Attention (direct),16,80.14,static
+Attention (direct),32,63.45,static

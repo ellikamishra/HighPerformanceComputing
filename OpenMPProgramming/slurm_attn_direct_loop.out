@@ -1,0 +1,18 @@
+=== attn_direct | OMP_THREADS=1 ===
+=== Attention (direct) | OMP_THREADS=1 ===
+Time: 1.866278 s  Rate: 9.21 GFLOP/s (approx)
+=== attn_direct | OMP_THREADS=2 ===
+=== Attention (direct) | OMP_THREADS=2 ===
+Time: 1.410815 s  Rate: 12.18 GFLOP/s (approx)
+=== attn_direct | OMP_THREADS=4 ===
+=== Attention (direct) | OMP_THREADS=4 ===
+Time: 0.683022 s  Rate: 25.15 GFLOP/s (approx)
+=== attn_direct | OMP_THREADS=8 ===
+=== Attention (direct) | OMP_THREADS=8 ===
+Time: 0.360963 s  Rate: 47.59 GFLOP/s (approx)
+=== attn_direct | OMP_THREADS=16 ===
+=== Attention (direct) | OMP_THREADS=16 ===
+Time: 0.214362 s  Rate: 80.14 GFLOP/s (approx)
+=== attn_direct | OMP_THREADS=32 ===
+=== Attention (direct) | OMP_THREADS=32 ===
+Time: 0.270760 s  Rate: 63.45 GFLOP/s (approx)

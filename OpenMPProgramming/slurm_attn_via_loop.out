@@ -1,0 +1,38 @@
+== Attention via DGEMM (naive) ==
+=== attn_via | OMP_THREADS=1 ===
+=== Attention via DGEMM (naive) | OMP_THREADS=1 ===
+Time: 1.634057 s  Rate: 10.51 GFLOP/s (approx)
+=== attn_via | OMP_THREADS=2 ===
+=== Attention via DGEMM (naive) | OMP_THREADS=2 ===
+Time: 0.830868 s  Rate: 20.68 GFLOP/s (approx)
+=== attn_via | OMP_THREADS=4 ===
+=== Attention via DGEMM (naive) | OMP_THREADS=4 ===
+Time: 0.422221 s  Rate: 40.69 GFLOP/s (approx)
+=== attn_via | OMP_THREADS=8 ===
+=== Attention via DGEMM (naive) | OMP_THREADS=8 ===
+Time: 0.228235 s  Rate: 75.27 GFLOP/s (approx)
+=== attn_via | OMP_THREADS=16 ===
+=== Attention via DGEMM (naive) | OMP_THREADS=16 ===
+Time: 0.144193 s  Rate: 119.14 GFLOP/s (approx)
+=== attn_via | OMP_THREADS=32 ===
+=== Attention via DGEMM (naive) | OMP_THREADS=32 ===
+Time: 0.098360 s  Rate: 174.66 GFLOP/s (approx)
+== Attention via DGEMM (blocked) ==
+=== attn_via (blocked) | OMP_THREADS=1 ===
+=== Attention via DGEMM (blocked) | OMP_THREADS=1 ===
+Time: 1.600886 s  Rate: 10.73 GFLOP/s (approx)
+=== attn_via (blocked) | OMP_THREADS=2 ===
+=== Attention via DGEMM (blocked) | OMP_THREADS=2 ===
+Time: 0.809495 s  Rate: 21.22 GFLOP/s (approx)
+=== attn_via (blocked) | OMP_THREADS=4 ===
+=== Attention via DGEMM (blocked) | OMP_THREADS=4 ===
+Time: 0.408743 s  Rate: 42.03 GFLOP/s (approx)
+=== attn_via (blocked) | OMP_THREADS=8 ===
+=== Attention via DGEMM (blocked) | OMP_THREADS=8 ===
+Time: 0.214934 s  Rate: 79.93 GFLOP/s (approx)
+=== attn_via (blocked) | OMP_THREADS=16 ===
+=== Attention via DGEMM (blocked) | OMP_THREADS=16 ===
+Time: 0.124216 s  Rate: 138.31 GFLOP/s (approx)
+=== attn_via (blocked) | OMP_THREADS=32 ===
+=== Attention via DGEMM (blocked) | OMP_THREADS=32 ===
+Time: 0.095025 s  Rate: 180.79 GFLOP/s (approx)

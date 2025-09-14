@@ -1,0 +1,7 @@
+mode,threads,gflops,label
+DGEMM (naive),1,8.39,static
+DGEMM (naive),2,11.62,static
+DGEMM (naive),4,23.61,static
+DGEMM (naive),8,42.67,static
+DGEMM (naive),16,78.62,static
+DGEMM (naive),32,79.89,static
