@@ -7,7 +7,11 @@ void dgemm_naive(const double* A, const double* B, double* C,
                  int m, int n, int k) {
     // Zero C
     // parallelize with OpenMP
-    #pragma omp parallel for schedule(static) //static scheduling for good locality per row
+#ifdef SCHED_RUNTIME
+    #pragma omp parallel for schedule(runtime)
+#else
+    #pragma omp parallel for schedule(static) // static scheduling for good locality per row
+#endif
     for (int i = 0; i < m; i++) {
         for (int j = 0; j < n; j++) {
             C[i * n + j] = 0.0;
@@ -15,7 +19,11 @@ void dgemm_naive(const double* A, const double* B, double* C,
     }
 
     // Parallelize outer i-loop
+#ifdef SCHED_RUNTIME
+    #pragma omp parallel for schedule(runtime)
+#else
     #pragma omp parallel for schedule(static)
+#endif
     for (int i = 0; i < m; ++i) {
         double* Ci = C + (std::size_t)i * n;
         const double* Ai = A + (std::size_t)i * k;

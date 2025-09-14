@@ -14,7 +14,7 @@ export OMP_PLACES=threads
 export MKL_THREADING_LAYER=INTEL
 export MKL_NUM_THREADS=1
 # Optionally try a schedule:
-# export OMP_SCHEDULE=static
+export OMP_SCHEDULE=static
 # export OMP_SCHEDULE=dynamic,16
 # export OMP_SCHEDULE=guided
 

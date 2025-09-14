@@ -2,6 +2,10 @@ CXX ?= g++
 CXXFLAGS := -O3 -march=native -fopenmp -std=c++17
 INCLUDES := -I.
 
+ifeq ($(SCHED_RUNTIME),1)
+  CXXFLAGS += -DSCHED_RUNTIME
+endif
+
 ifeq ($(USE_MKL),1)
   CXXFLAGS += -DUSE_MKL
   ifneq ($(MKLROOT),)
