@@ -1,24 +1,24 @@
 === DGEMM | OMP_THREADS=1 ===
 === DGEMM (naive) | OMP_THREADS=1 ===
-Time: 1.754518 s  Rate: 9.79 GFLOP/s
+Time: 1.706578 s  Rate: 10.07 GFLOP/s
 [verify] max |C_student - C_mkl| = 1.066e-14 PASS
 === DGEMM | OMP_THREADS=2 ===
 === DGEMM (naive) | OMP_THREADS=2 ===
-Time: 1.304834 s  Rate: 13.17 GFLOP/s
+Time: 1.300012 s  Rate: 13.22 GFLOP/s
 [verify] max |C_student - C_mkl| = 1.066e-14 PASS
 === DGEMM | OMP_THREADS=4 ===
 === DGEMM (naive) | OMP_THREADS=4 ===
-Time: 0.644923 s  Rate: 26.64 GFLOP/s
+Time: 0.630693 s  Rate: 27.24 GFLOP/s
 [verify] max |C_student - C_mkl| = 1.066e-14 PASS
 === DGEMM | OMP_THREADS=8 ===
 === DGEMM (naive) | OMP_THREADS=8 ===
-Time: 0.334142 s  Rate: 51.41 GFLOP/s
+Time: 0.355138 s  Rate: 48.38 GFLOP/s
 [verify] max |C_student - C_mkl| = 1.066e-14 PASS
 === DGEMM | OMP_THREADS=16 ===
 === DGEMM (naive) | OMP_THREADS=16 ===
-Time: 0.203045 s  Rate: 84.61 GFLOP/s
+Time: 0.196333 s  Rate: 87.50 GFLOP/s
 [verify] max |C_student - C_mkl| = 1.066e-14 PASS
 === DGEMM | OMP_THREADS=32 ===
 === DGEMM (naive) | OMP_THREADS=32 ===
-Time: 0.225576 s  Rate: 76.16 GFLOP/s
+Time: 0.231775 s  Rate: 74.12 GFLOP/s
 [verify] max |C_student - C_mkl| = 1.066e-14 PASS

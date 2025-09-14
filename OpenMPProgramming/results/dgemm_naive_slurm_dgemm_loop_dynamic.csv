@@ -1,0 +1,7 @@
+mode,threads,gflops,label
+DGEMM (naive),1,10.07,slurm_dgemm_loop_dynamic
+DGEMM (naive),2,13.22,slurm_dgemm_loop_dynamic
+DGEMM (naive),4,27.24,slurm_dgemm_loop_dynamic
+DGEMM (naive),8,48.38,slurm_dgemm_loop_dynamic
+DGEMM (naive),16,87.5,slurm_dgemm_loop_dynamic
+DGEMM (naive),32,74.12,slurm_dgemm_loop_dynamic

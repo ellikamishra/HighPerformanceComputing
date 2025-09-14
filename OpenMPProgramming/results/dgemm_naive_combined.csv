@@ -1,7 +1,19 @@
 mode,threads,gflops,label
-DGEMM (naive),1,8.39,static
-DGEMM (naive),2,11.62,static
-DGEMM (naive),4,23.61,static
-DGEMM (naive),8,42.67,static
-DGEMM (naive),16,78.62,static
-DGEMM (naive),32,79.89,static
+DGEMM (naive),1,9.79,slurm_dgemm_loop
+DGEMM (naive),2,13.17,slurm_dgemm_loop
+DGEMM (naive),4,26.64,slurm_dgemm_loop
+DGEMM (naive),8,51.41,slurm_dgemm_loop
+DGEMM (naive),16,84.61,slurm_dgemm_loop
+DGEMM (naive),32,76.16,slurm_dgemm_loop
+DGEMM (naive),1,10.07,slurm_dgemm_loop_dynamic
+DGEMM (naive),2,13.22,slurm_dgemm_loop_dynamic
+DGEMM (naive),4,27.24,slurm_dgemm_loop_dynamic
+DGEMM (naive),8,48.38,slurm_dgemm_loop_dynamic
+DGEMM (naive),16,87.5,slurm_dgemm_loop_dynamic
+DGEMM (naive),32,74.12,slurm_dgemm_loop_dynamic
+DGEMM (naive),1,9.75,slurm_dgemm_loop_guided
+DGEMM (naive),2,13.57,slurm_dgemm_loop_guided
+DGEMM (naive),4,26.89,slurm_dgemm_loop_guided
+DGEMM (naive),8,50.94,slurm_dgemm_loop_guided
+DGEMM (naive),16,84.51,slurm_dgemm_loop_guided
+DGEMM (naive),32,80.25,slurm_dgemm_loop_guided
