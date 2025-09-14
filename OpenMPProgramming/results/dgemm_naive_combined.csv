@@ -1,0 +1,19 @@
+mode,threads,gflops,label
+DGEMM (naive),1,9.69,slurm_dgemm_loop
+DGEMM (naive),2,12.98,slurm_dgemm_loop
+DGEMM (naive),4,26.35,slurm_dgemm_loop
+DGEMM (naive),8,51.17,slurm_dgemm_loop
+DGEMM (naive),16,87.81,slurm_dgemm_loop
+DGEMM (naive),32,77.2,slurm_dgemm_loop
+DGEMM (naive),1,10.07,slurm_dgemm_loop_dynamic
+DGEMM (naive),2,13.22,slurm_dgemm_loop_dynamic
+DGEMM (naive),4,27.24,slurm_dgemm_loop_dynamic
+DGEMM (naive),8,48.38,slurm_dgemm_loop_dynamic
+DGEMM (naive),16,87.5,slurm_dgemm_loop_dynamic
+DGEMM (naive),32,74.12,slurm_dgemm_loop_dynamic
+DGEMM (naive),1,9.75,slurm_dgemm_loop_guided
+DGEMM (naive),2,13.57,slurm_dgemm_loop_guided
+DGEMM (naive),4,26.89,slurm_dgemm_loop_guided
+DGEMM (naive),8,50.94,slurm_dgemm_loop_guided
+DGEMM (naive),16,84.51,slurm_dgemm_loop_guided
+DGEMM (naive),32,80.25,slurm_dgemm_loop_guided

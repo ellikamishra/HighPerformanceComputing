@@ -1,0 +1,7 @@
+mode,threads,gflops,label
+Attention via DGEMM (blocked),1,9.65,slurm_attn_via_loop
+Attention via DGEMM (blocked),2,19.7,slurm_attn_via_loop
+Attention via DGEMM (blocked),4,38.38,slurm_attn_via_loop
+Attention via DGEMM (blocked),8,73.58,slurm_attn_via_loop
+Attention via DGEMM (blocked),16,130.51,slurm_attn_via_loop
+Attention via DGEMM (blocked),32,184.06,slurm_attn_via_loop

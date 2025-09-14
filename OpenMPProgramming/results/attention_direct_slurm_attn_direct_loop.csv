@@ -1,0 +1,7 @@
+mode,threads,gflops,label
+Attention (direct),1,8.72,slurm_attn_direct_loop
+Attention (direct),2,11.72,slurm_attn_direct_loop
+Attention (direct),4,23.56,slurm_attn_direct_loop
+Attention (direct),8,43.24,slurm_attn_direct_loop
+Attention (direct),16,75.48,slurm_attn_direct_loop
+Attention (direct),32,59.38,slurm_attn_direct_loop
