@@ -5,6 +5,10 @@
 
 void dgemm_naive(const double* A, const double* B, double* C,
                  int m, int n, int k);
+// Add these prototypes near the top of attention_via_dgemm.cpp
+
+void dgemm_blocked(const double* A, const double* B, double* C,
+                   int m, int n, int k, int BM, int BN, int BK);
 
 
 // Helper: transpose K(LxD) to KT(DxL)
