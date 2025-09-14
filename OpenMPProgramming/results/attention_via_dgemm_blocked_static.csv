@@ -1,0 +1,7 @@
+mode,threads,gflops,label
+Attention via DGEMM (blocked),1,10.73,static
+Attention via DGEMM (blocked),2,21.22,static
+Attention via DGEMM (blocked),4,42.03,static
+Attention via DGEMM (blocked),8,79.93,static
+Attention via DGEMM (blocked),16,138.31,static
+Attention via DGEMM (blocked),32,180.79,static

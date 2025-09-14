@@ -1,0 +1,7 @@
+mode,threads,gflops,label
+Attention via DGEMM (naive),1,10.51,static
+Attention via DGEMM (naive),2,20.68,static
+Attention via DGEMM (naive),4,40.69,static
+Attention via DGEMM (naive),8,75.27,static
+Attention via DGEMM (naive),16,119.14,static
+Attention via DGEMM (naive),32,174.66,static
