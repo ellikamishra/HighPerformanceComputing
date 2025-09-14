@@ -6,8 +6,13 @@
 #SBATCH -N 1
 #SBATCH -o slurm_dgemm_loop.out
 
+module purge
+module load PrgEnv-intel
+
 export OMP_PROC_BIND=spread
 export OMP_PLACES=threads
+export MKL_THREADING_LAYER=INTEL
+export MKL_NUM_THREADS=1
 # Optionally try a schedule:
 # export OMP_SCHEDULE=static
 # export OMP_SCHEDULE=dynamic,16
