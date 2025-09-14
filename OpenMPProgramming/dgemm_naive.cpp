@@ -14,8 +14,7 @@ void dgemm_naive(const double* A, const double* B, double* C,
         }
     }
 
-    // Parallelize outer i-loop. Do not collapse with k-loop
-    // because that would create data races on C's rows.
+    // Parallelize outer i-loop
     #pragma omp parallel for schedule(static)
     for (int i = 0; i < m; ++i) {
         double* Ci = C + (std::size_t)i * n;

@@ -38,7 +38,7 @@ void attention_via_dgemm(const double* Q, const double* K, const double* V,
     
     // implement your code
     std::vector<double> KT((std::size_t)D * L);
-    transpose_LxD_to_DxL(K, KT.data(), L, D);
+    transpose(K, KT.data(), L, D);
     std::vector<double> S((std::size_t)L * L, 0.0);
     if (use_blocked) {
         dgemm_blocked(Q, KT.data(), S.data(), L, L, D, BM, BN, BK);
