@@ -11,6 +11,8 @@
 
 set -euo pipefail
 
+source /opt/cray/pe/cpe/24.07/restore_lmod_system_defaults.sh
+
 module purge
 module load cudatoolkit
 
