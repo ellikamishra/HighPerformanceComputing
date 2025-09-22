@@ -55,7 +55,7 @@ void attention_via_dgemm(const double* Q, const double* K, const double* V,
         double* Si = S.data() + (std::size_t)i * L;
         for (int j = 0; j < L; ++j) Si[j] *= scl;
     }
-    softmax_rows(S.data(), L);
+    softmax_rows(S.data(), L); //softmax the rows of S is A=softmax(S)
     if (use_blocked) {
         dgemm_blocked(S.data(), V, O, L, D, L, BM, BN, BK);
     } else {

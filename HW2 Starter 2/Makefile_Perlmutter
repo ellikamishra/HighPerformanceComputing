@@ -1,0 +1,14 @@
+NVCC ?= nvcc
+ARCH ?= -gencode arch=compute_80,code=sm_80
+CXXFLAGS := -O3 -std=c++17
+
+SRC := main.cu dgemm_naive.cu dgemm_tiled.cu attention.cu
+BIN := cuda_hw
+
+all: $(BIN)
+
+$(BIN): $(SRC) common.cuh
+	$(NVCC) $(ARCH) $(CXXFLAGS) -I/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/math_libs/include -L/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/math_libs/lib64 -lcublasLt -lcublas -o $@ $(SRC)
+
+clean:
+	rm -f $(BIN)

@@ -31,12 +31,10 @@ int main(int argc, char** argv) {
     std::string mode = "dgemm"; // dgemm | attn_via | attn_direct
     int m=2048, n=2048, k=2048;
     int L=2048, D=1024;
-    bool scale_runs=false;
     bool blocked=false;
     int BM=128, BN=128, BK=64;
 
-    // NEW: allow forcing a single thread count via CLI when not using --scale
-    int cli_threads = 0; // if >0, we use this value for the run
+    // Threads are controlled via OMP_NUM_THREADS from the environment.
 
     // Parse args
     for (int i=1;i<argc;i++){
@@ -46,12 +44,10 @@ int main(int argc, char** argv) {
         else if (!std::strcmp(argv[i],"--k") && i+1<argc) k = argi(argv, ++i);
         else if (!std::strcmp(argv[i],"--L") && i+1<argc) L = argi(argv, ++i);
         else if (!std::strcmp(argv[i],"--D") && i+1<argc) D = argi(argv, ++i);
-        else if (!std::strcmp(argv[i],"--scale")) scale_runs = true;
         else if (!std::strcmp(argv[i],"--blocked")) blocked = true;
         else if (!std::strcmp(argv[i],"--BM") && i+1<argc) BM = argi(argv, ++i);
         else if (!std::strcmp(argv[i],"--BN") && i+1<argc) BN = argi(argv, ++i);
         else if (!std::strcmp(argv[i],"--BK") && i+1<argc) BK = argi(argv, ++i);
-        else if (!std::strcmp(argv[i],"--threads") && i+1<argc) cli_threads = argi(argv, ++i);
     }
 
     std::mt19937_64 rng(42);
@@ -106,32 +102,15 @@ int main(int argc, char** argv) {
         std::printf("Time: %.6f s  Rate: %.2f GFLOP/s (approx)\n", (t1-t0), gflops);
     };
 
-    auto run_scale = [&](auto&& f){
-        int thread_list[] = {1,2,4,8,16,32};
-        for (int t : thread_list) f(t);
-    };
-
     if (mode=="dgemm") {
-        if (scale_runs) {
-            run_scale(do_dgemm);
-        } else {
-            int t = (cli_threads > 0) ? cli_threads : omp_get_max_threads();
-            do_dgemm(t);
-        }
+        int t = omp_get_max_threads();
+        do_dgemm(t);
     } else if (mode=="attn_via") {
-        if (scale_runs) {
-            run_scale(do_attn_via);
-        } else {
-            int t = (cli_threads > 0) ? cli_threads : omp_get_max_threads();
-            do_attn_via(t);
-        }
+        int t = omp_get_max_threads();
+        do_attn_via(t);
     } else if (mode=="attn_direct") {
-        if (scale_runs) {
-            run_scale(do_attn_direct);
-        } else {
-            int t = (cli_threads > 0) ? cli_threads : omp_get_max_threads();
-            do_attn_direct(t);
-        }
+        int t = omp_get_max_threads();
+        do_attn_direct(t);
     } else {
         std::fprintf(stderr, "Unknown --mode %s\n", mode.c_str());
         return 2;
