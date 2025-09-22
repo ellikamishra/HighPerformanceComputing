@@ -1,0 +1,3 @@
+/usr/lib64/gcc/x86_64-suse-linux/13/../../../../x86_64-suse-linux/bin/ld: cannot find -lcublas: No such file or directory
+collect2: error: ld returned 1 exit status
+make: *** [Makefile_Perlmutter:17: cuda_hw] Error 1
