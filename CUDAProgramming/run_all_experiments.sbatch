@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -A <YOUR_ACCOUNT>           # e.g., m####
+#SBATCH -A m5101
 #SBATCH -C gpu
 #SBATCH -q regular
 #SBATCH -t 01:00:00
