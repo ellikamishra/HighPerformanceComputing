@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -A m5101
+#SBATCH -A m5101_g
 #SBATCH -C gpu
 #SBATCH -q regular
 #SBATCH -t 01:00:00
