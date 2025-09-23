@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """
 Parse HW2 CUDA logs to a single CSV + summary tables (and optional plots).
+
+salloc -C cpu -q debug -t 03:00:00 -N 1
 """
 
 import argparse
