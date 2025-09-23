@@ -1,0 +1,6 @@
+Unloading the cpe module is insufficient to restore the system defaults.
+Please run 'source
+/opt/cray/pe/cpe/24.07/restore_lmod_system_defaults.[csh|sh]'. 
+/usr/lib64/gcc/x86_64-suse-linux/13/../../../../x86_64-suse-linux/bin/ld: cannot find -lcublas: No such file or directory
+collect2: error: ld returned 1 exit status
+make: *** [Makefile_Perlmutter:14: cuda_hw] Error 1
