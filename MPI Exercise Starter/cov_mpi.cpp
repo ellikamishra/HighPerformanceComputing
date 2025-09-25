@@ -132,7 +132,7 @@ MPI_Bcast(&n, 1, MPI_INT, 0, MPI_COMM_WORLD);//everyone gets n
     
      /**** Write a reduction Call here */
     //MPI_reduce(&local_cov, &global_cov, 1, MPI_DOUBLE, MPI_SUM, MPI_COMM_WORLD);
-    MPI_reduce(&local_cov, &global_cov, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
+    MPI_Reduce(&local_cov, &global_cov, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
     MPI_Barrier(MPI_COMM_WORLD);
     double t_end = MPI_Wtime();
 
