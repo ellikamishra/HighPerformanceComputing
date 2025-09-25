@@ -1,0 +1,27 @@
+#!/bin/bash
+#SBATCH -A  m5101                # replace with your NERSC account
+#SBATCH -C cpu                   # use "cpu" for CPU nodes, "gpu" for GPU nodes
+#SBATCH -q debug                 # queue: regular or debug
+#SBATCH -t 00:05:00              # time limit (hh:mm:ss)
+#SBATCH -J cov_job               # job name
+#SBATCH -N 4                     # number of nodes
+#SBATCH --ntasks-per-node=4      # number of MPI ranks per node
+#SBATCH --cpus-per-task=8        # OpenMP threads per MPI rank
+#SBATCH -o cov.o%j        # stdout file
+#SBATCH -e cov.e%j        # stderr file
+
+# Load programming environment
+module load PrgEnv-gnu
+
+# Set OpenMP environment variable
+export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
+
+
+# Run: srun handles both MPI and OpenMP
+srun ./cov_mpi 1000000000
+
+# If you are running this as interactive job
+# export OMP_NUM_THREADS=16
+# srun -N 4 --ntask 4 -c 16 ./cov_mpi 1000000000
+# Thus is equivalent
+# srun -N 4 --ntasks-per-node=1 --cpus-per-task=16 ./cov_mpi 1000000000

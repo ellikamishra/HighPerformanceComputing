@@ -1,0 +1,10 @@
+To compile the code use
+# module load PrgEnv-gnu
+
+To run the code on interactive queue use
+# salloc --nodes 1 --qos interactive --time 01:00:00 --constraint cpu
+
+To run the code on the compute node use
+
+# srun -n 4 ./cov_mpi 999999
+
