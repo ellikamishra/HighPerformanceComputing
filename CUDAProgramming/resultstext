@@ -1,0 +1,60 @@
+ellikam@nid001137:~/csce654-hw1/HighPerformanceComputing/CUDAProgramming> ./run_dgemm_fast.sh
+rm -f cuda_hw
+nvcc -gencode arch=compute_80,code=sm_80 -O3 -std=c++17 -I/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/math_libs/include -L/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/math_libs/lib64 -lcublasLt -lcublas -o cuda_hw main.cu dgemm_naive.cu dgemm_tiled.cu attention.cu
+=== DGEMM cuBLAS ===
+CSV,ALG=DGEMM_CUBLAS,M=10240,N=10240,K=10240,TILE=-,BLOCK=-,ms=112.282,GF=19125.748,diff=0.000e+00
+=== DGEMM Tiled sweep ===
+TILE=1
+CSV,ALG=DGEMM_TILED,M=10240,N=10240,K=10240,TILE=1,BLOCK=1x1,ms=135042.484,GF=15.902,diff=0.000e+00
+TILE=4
+CSV,ALG=DGEMM_TILED,M=10240,N=10240,K=10240,TILE=4,BLOCK=4x4,ms=3220.589,GF=666.798,diff=0.000e+00
+TILE=16
+CSV,ALG=DGEMM_TILED,M=10240,N=10240,K=10240,TILE=16,BLOCK=16x16,ms=795.822,GF=2698.449,diff=0.000e+00
+TILE=32
+CSV,ALG=DGEMM_TILED,M=10240,N=10240,K=10240,TILE=32,BLOCK=32x32,ms=751.664,GF=2856.972,diff=0.000e+00
+ellikam@nid001137:~/csce654-hw1/HighPerformanceComputing/CUDAProgramming> ls
+attention.cu  cuda_hw	      dgemm_tiled.cu  logsold  Makefile_Perlmutter  perlmutter_interactive.sh	run_attention.sbatch  run_dgemm_fast.sbatch  run_dgemm_naive.sbatch  run_full_after_salloc.sh
+common.cuh    dgemm_naive.cu  logs	      main.cu  parse_hw2_logs.py    run_all_experiments.sbatch	run_attention.sh      run_dgemm_fast.sh      run_dgemm_naive.sh
+ellikam@nid001137:~/csce654-hw1/HighPerformanceComputing/CUDAProgramming> cd logs
+ellikam@nid001137:~/csce654-hw1/HighPerformanceComputing/CUDAProgramming/logs> ls
+dgemm_cublas.csv  dgemm_fast.43030801.err  dgemm_fast.43030801.out  dgemm_tiled_T16.csv  dgemm_tiled_T1.csv  dgemm_tiled_T32.csv  dgemm_tiled_T4.csv  hw2_all.43013307.err  hw2_all.43013307.out
+ellikam@nid001137:~/csce654-hw1/HighPerformanceComputing/CUDAProgramming/logs> cd ..
+ellikam@nid001137:~/csce654-hw1/HighPerformanceComputing/CUDAProgramming> ./run_attention.sh 
+rm -f cuda_hw
+nvcc -gencode arch=compute_80,code=sm_80 -O3 -std=c++17 -I/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/math_libs/include -L/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/math_libs/lib64 -lcublasLt -lcublas -o cuda_hw main.cu dgemm_naive.cu dgemm_tiled.cu attention.cu
+=== Attention cuBLAS ===
+CSV,ALG=ATTN_CUBLAS,L=10240,D=4096,TILE=32,ms=108.990,GF=15762.852,diff=0.000e+00
+=== Attention Tiled sweep ===
+ATTN TILE=1
+CSV,ALG=ATTN_TILED,L=10240,D=4096,TILE=1,ms=621.285,GF=2765.218,diff=0.000e+00
+ATTN TILE=4
+CSV,ALG=ATTN_TILED,L=10240,D=4096,TILE=4,ms=617.148,GF=2783.750,diff=0.000e+00
+ATTN TILE=16
+CSV,ALG=ATTN_TILED,L=10240,D=4096,TILE=16,ms=618.746,GF=2776.562,diff=0.000e+00
+ATTN TILE=32
+CSV,ALG=ATTN_TILED,L=10240,D=4096,TILE=32,ms=621.700,GF=2763.371,diff=0.000e+00
+=== Attention Naive ===
+CSV,ALG=ATTN_NAIVE,L=10240,D=4096,TILE=32,ms=864.274,GF=1987.779,diff=0.000e+00
+ellikam@nid001137:~/csce654-hw1/HighPerformanceComputing/CUDAProgramming> ./run_dgemm_naive.sh 
+rm -f cuda_hw
+nvcc -gencode arch=compute_80,code=sm_80 -O3 -std=c++17 -I/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/math_libs/include -L/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/math_libs/lib64 -lcublasLt -lcublas -o cuda_hw main.cu dgemm_naive.cu dgemm_tiled.cu attention.cu
+=== DGEMM Naive (block sweep) ===
+Naive BX=1 BY=1
+CSV,ALG=DGEMM_NAIVE,M=10240,N=10240,K=10240,TILE=-,BLOCK=1x1,ms=55194.996,GF=38.907,diff=0.000e+00
+Naive BX=1 BY=4
+CSV,ALG=DGEMM_NAIVE,M=10240,N=10240,K=10240,TILE=-,BLOCK=1x4,ms=14135.840,GF=151.918,diff=0.000e+00
+Naive BX=1 BY=16
+CSV,ALG=DGEMM_NAIVE,M=10240,N=10240,K=10240,TILE=-,BLOCK=1x16,ms=7597.996,GF=282.638,diff=0.000e+00
+Naive BX=4 BY=1
+CSV,ALG=DGEMM_NAIVE,M=10240,N=10240,K=10240,TILE=-,BLOCK=4x1,ms=16285.640,GF=131.864,diff=0.000e+00
+Naive BX=4 BY=4
+CSV,ALG=DGEMM_NAIVE,M=10240,N=10240,K=10240,TILE=-,BLOCK=4x4,ms=4181.534,GF=513.564,diff=0.000e+00
+Naive BX=4 BY=16
+CSV,ALG=DGEMM_NAIVE,M=10240,N=10240,K=10240,TILE=-,BLOCK=4x16,ms=2216.195,GF=968.996,diff=0.000e+00
+Naive BX=16 BY=1
+CSV,ALG=DGEMM_NAIVE,M=10240,N=10240,K=10240,TILE=-,BLOCK=16x1,ms=6768.879,GF=317.258,diff=0.000e+00
+Naive BX=16 BY=4
+CSV,ALG=DGEMM_NAIVE,M=10240,N=10240,K=10240,TILE=-,BLOCK=16x4,ms=1746.367,GF=1229.686,diff=0.000e+00
+Naive BX=16 BY=16
+CSV,ALG=DGEMM_NAIVE,M=10240,N=10240,K=10240,TILE=-,BLOCK=16x16,ms=1075.635,GF=1996.479,diff=0.000e+00
+ellikam@nid001137:~/csce654-hw1/HighPerformanceComputing/CUDAProgramming> 

@@ -13,6 +13,23 @@ import matplotlib.pyplot as plt
 
 CSV_PREFIX = "CSV,"
 
+
+def _maybe_int(value: str):
+    """Return int(value) if possible, otherwise None."""
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def _maybe_float(value: str):
+    """Return float(value) if possible, otherwise None."""
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return None
+
+
 def parse_csv_line(line):
     if not line.startswith(CSV_PREFIX):
         return {}
@@ -23,15 +40,15 @@ def parse_csv_line(line):
             continue
         k, v = p.split("=", 1)
         k, v = k.strip(), v.strip()
-        if k in {"M","N","K","L","D","TILE"}:
-            record[k] = int(v)
-        elif k in {"ms","GF","diff"}:
-            record[k] = float(v)
+        if k in {"M", "N", "K", "L", "D", "TILE"}:
+            record[k] = _maybe_int(v)
+        elif k in {"ms", "GF", "diff"}:
+            record[k] = _maybe_float(v)
         elif k == "BLOCK":
             record[k] = v
             if "x" in v:
-                bx, by = v.split("x")
-                record["BX"], record["BY"] = int(bx), int(by)
+                bx, by = v.split("x", 1)
+                record["BX"], record["BY"] = _maybe_int(bx), _maybe_int(by)
         else:
             record[k] = v
     return record
@@ -71,7 +88,11 @@ def main():
         return
 
     df = pd.DataFrame(recs)
+    numeric_cols = [c for c in ["M", "N", "K", "L", "D", "TILE", "BX", "BY", "ms", "GF", "diff"] if c in df.columns]
+    df[numeric_cols] = df[numeric_cols].apply(pd.to_numeric, errors="coerce")
     outdir = Path(args.outdir)
+    if outdir.exists() and not outdir.is_dir():
+        raise RuntimeError(f"Output path {outdir} exists and is not a directory")
     outdir.mkdir(exist_ok=True, parents=True)
 
     # merged results
