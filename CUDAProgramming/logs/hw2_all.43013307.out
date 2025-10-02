@@ -1,2 +1,0 @@
-rm -f cuda_hw *.o
-nvcc -gencode arch=compute_80,code=sm_80 -O3 -std=c++17 -Xcompiler -fopenmp -I/opt/nvidia/hpc_sdk/Linux_x86_64/24.5/cuda/12.4/include -o cuda_hw main.cu dgemm_naive.cu dgemm_tiled.cu attention.cu -L/opt/nvidia/hpc_sdk/Linux_x86_64/24.5/cuda/12.4/lib64 -lcublas -lcudart

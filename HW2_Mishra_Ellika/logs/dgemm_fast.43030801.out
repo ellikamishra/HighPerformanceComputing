@@ -1,0 +1,7 @@
+Switching PrgEnv-gnu.
+Switching cray-dsmml.
+Switching cray-libsci.
+Switching cray-mpich.
+Switching craype.
+Switching gcc-native.
+Switching nvidia.

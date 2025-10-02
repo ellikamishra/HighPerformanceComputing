@@ -1,0 +1,35 @@
+# # Perlmutter build (A100, sm_80)
+# NVCC ?= nvcc
+# ARCH ?= -gencode arch=compute_80,code=sm_80
+
+# # Prefer Cray CUDA (has cuBLAS); fallback to CUDA_HOME if CRAY_* is unset
+# # CUDA_ROOT ?= $(if $(CRAY_CUDATOOLKIT_DIR),$(CRAY_CUDATOOLKIT_DIR),$(CUDA_HOME))
+# # /opt/nvidia/hpc_sdk/Linux_x86_64/25.5/math_libs/lib64/
+# # CXXFLAGS := -O3 -std=c++17 -Xcompiler -fopenmp -I$(CUDA_ROOT)/include
+# # LDFLAGS  := -L$(CUDA_ROOT)/lib64 -lcublas -lcudart
+
+# # SRC := main.cu dgemm_naive.cu dgemm_tiled.cu attention.cu
+# # BIN := cuda_hw
+
+# all: $(BIN)
+# $(BIN): $(SRC) common.cuh
+# 	$(NVCC) $(ARCH) $(CXXFLAGS) -o $@ $(SRC) $(LDFLAGS)
+
+# clean:
+# 	rm -f $(BIN) *.o
+
+
+NVCC ?= nvcc
+ARCH ?= -gencode arch=compute_80,code=sm_80
+CXXFLAGS := -O3 -std=c++17
+
+SRC := main.cu dgemm_naive.cu dgemm_tiled.cu attention.cu
+BIN := cuda_hw
+
+all: $(BIN)
+
+$(BIN): $(SRC) common.cuh
+	$(NVCC) $(ARCH) $(CXXFLAGS) -I/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/math_libs/include -L/opt/nvidia/hpc_sdk/Linux_x86_64/25.5/math_libs/lib64 -lcublasLt -lcublas -o $@ $(SRC)
+
+clean:
+	rm -f $(BIN)
